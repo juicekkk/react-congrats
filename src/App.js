@@ -2,9 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
+import Header from "./components/molecules/Header";
+import Footer from "./components/molecules/Footer";
+import Main from "./components/molecules/Main";
+
+const styledContainer = styled.div`
+    width: 100%;
+    display: block;
+    maxWidth: 640px;
+`
+
 
 function App() {
   return (
@@ -24,11 +31,11 @@ function App() {
         </a>
       </header>
     </div>*/
-      <div>
+      <styledContainer>
         <Header />
         <Main />
         <Footer />
-      </div>
+      </styledContainer>
   );
 }
 
