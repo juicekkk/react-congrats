@@ -8,6 +8,7 @@ const CongratsWrap = styled.div`
   width: 100%;
   height: 60px;
 `
+
 const Congrats = styled.img`
   width: 200px;
   display: block;

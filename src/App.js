@@ -6,10 +6,11 @@ import Header from "./components/molecules/Header";
 import Footer from "./components/molecules/Footer";
 import Main from "./components/molecules/Main";
 
-const styledContainer = styled.div`
+const StyledContainer = styled.div`
     width: 100%;
+    max-width: 640px;
     display: block;
-    maxWidth: 640px;
+    margin: auto;
 `
 
 
@@ -31,11 +32,11 @@ function App() {
         </a>
       </header>
     </div>*/
-      <styledContainer>
+      <StyledContainer>
         <Header />
         <Main />
         <Footer />
-      </styledContainer>
+      </StyledContainer>
   );
 }
 
