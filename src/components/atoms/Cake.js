@@ -6,7 +6,7 @@ import cake from '../../images/cake.png';
 const CakeWrap = styled.img`
   display: block;
   width: 80%;
-  margin: 0 auto; 
+  margin: 10px auto 20px auto; 
 `
 
 function Cake(props) {

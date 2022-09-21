@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import logo from '../../images/logo.png';
+import logo from '../../images/logo2.png';
 
 const CongratsWrap = styled.div`
-  display: inline;
+  display: block;
   width: 100%;
   height: 60px;
 `

@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledDivider = styled.div`
+import divider from '../../images/divider.png';
+
+const Line = styled.img`
     display: block;
     width: 90%;
-    background: #ffdd8d;
-    height: 2px;
-    margin: 5px auto;
-`
+    margin: 0 auto;
+`;
+
 
 function Divider(props) {
     return (
         <div>
-            <StyledDivider />
+            <Line src={divider} alt="divider" />
         </div>
     );
 }

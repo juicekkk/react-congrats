@@ -1,16 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 import Logo from '../atoms/Logo';
-import Divider from '../atoms/Divider';
 
+const HeaderWrap = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+`
 
 function Header(props) {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);
+    });
     return (
-        <div>
-            <Logo></Logo>
-            <Divider></Divider>
-        </div>
+        <HeaderWrap className={scrollPosition < 10 ? "" : "background-yellow"}>
+            <Logo />
+        </HeaderWrap>
     );
 }
 
