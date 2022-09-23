@@ -8,7 +8,7 @@ const FooterContainer = styled.div`
     position: fixed;
     bottom: 0px;
     width: 100%;
-    background: #ec80bb;
+    background: #ff9fd3;
     height: 60px;
     max-width: 640px;
 `
