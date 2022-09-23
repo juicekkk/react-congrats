@@ -43,6 +43,7 @@ const FlowBox = styled.div`
         width: 100%;
         height: 80px;
         overflow: hidden;
+        margin: 10px 0;
     `;
 
 const FlowWrap = styled.div`

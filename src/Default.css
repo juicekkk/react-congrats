@@ -1,0 +1,8 @@
+/* CAROUSEL */
+.slick-dots li.slick-active button:before {
+    color: #f75a5a !important;
+}
+
+.slick-dots li button:before {
+    color: #9b9b9b !important;
+}

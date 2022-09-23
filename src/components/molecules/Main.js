@@ -7,6 +7,7 @@ import Cake from '../atoms/Cake';
 import styled from "styled-components";
 import Divider from "../atoms/Divider";
 import FlowText from "../atoms/FlowText";
+import Carousel from "../atoms/Carousel";
 
 const MainContainer = styled.div`
     display: block;
@@ -18,13 +19,15 @@ const MainContainer = styled.div`
 function Main({props, text}) {
     return (
         <MainContainer>
-            <Divider></Divider>
+            <Divider />
             <Subtitle text={'2022.04.01'} />
             <Title text={'뚜경잉'} />
             <Cake />
             <Subtitle text={'생일축하해 ♥'} />
-            <Divider></Divider>
+            <Divider />
             <FlowText text1={"오늘도 좋은 하루 보내 ♥"} text2={"HAPPY BIRTHDAY TO YOU ♥"} text3={""}/>
+            <Carousel />
+            <Divider />
         </MainContainer>
     );
 }

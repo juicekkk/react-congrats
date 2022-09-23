@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './Default.css';
 import styled from "styled-components";
 
 import Header from "./components/molecules/Header";
