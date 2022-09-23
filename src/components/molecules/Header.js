@@ -8,6 +8,7 @@ const HeaderWrap = styled.div`
   top: 0;
   z-index: 999;
   width: 100%;
+  max-width: 640px;
 `
 
 function Header(props) {
