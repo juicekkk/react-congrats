@@ -11,7 +11,7 @@ const Logo = () => {
       height: 60px;
     `
 
-        const Congrats = styled.img`
+    const Congrats = styled.img`
       width: 200px;
       display: block;
       margin: 0 auto;

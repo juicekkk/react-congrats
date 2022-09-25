@@ -7,9 +7,12 @@ import styled from 'styled-components';
 
 const Carousel = () => {
     const Container = styled.div`
+        @media (min-width:720px){
+            height: 22vh !important;
+        }
         width: 100%;
         max-width: 640px;
-        height: 18vh;
+        height: 19vh;
         margin: 0 auto;
     `;
 
