@@ -8,18 +8,18 @@ import styled from 'styled-components';
 const Carousel = () => {
     const Container = styled.div`
         @media (min-width:720px){
-            height: 22vh !important;
+            height: 30vh !important;
         }
         width: 100%;
         max-width: 640px;
-        height: 19vh;
+        height: 25vh;
         margin: 0 auto;
     `;
 
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
         speed: 800,
         autoplay: true,
