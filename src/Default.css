@@ -6,3 +6,11 @@
 .slick-dots li button:before {
     color: #9b9b9b !important;
 }
+
+.background-yellow {
+    background: #ffc103;
+    padding: 1px 0;
+}
+
+.show { display: block !important;}
+.hide { display: none !important;}

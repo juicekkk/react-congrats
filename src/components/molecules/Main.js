@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Divider from "../atoms/Divider";
 import FlowText from "../atoms/FlowText";
 import Carousel from "../atoms/Carousel";
+import TopButton from "../atoms/TopButton";
 
 const MainContainer = styled.div`
     display: block;
@@ -28,6 +29,7 @@ function Main({props, text}) {
             <FlowText text1={"오늘도 좋은 하루 보내 ♥"} text2={"HAPPY BIRTHDAY TO YOU ♥"} text3={""}/>
             <Carousel />
             <Divider />
+            <TopButton />
         </MainContainer>
     );
 }
