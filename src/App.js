@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Header from "./components/molecules/Header";
 import Footer from "./components/molecules/Footer";
 import Main from "./components/molecules/Main";
+import Music from "./components/atoms/Music";
 import React from "react";
 
 const StyledContainer = styled.div`
@@ -62,11 +63,12 @@ function App() {
     }
 
   return (
-      <StyledContainer onClick={handleClick}>
-        <Header />
-        <Main />
-        <Footer />
-      </StyledContainer>
+        <StyledContainer onClick={handleClick}>
+            <Music />
+            <Header />
+            <Main />
+            <Footer />
+        </StyledContainer>
   );
 }
 

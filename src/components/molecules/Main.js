@@ -15,6 +15,8 @@ import Carousel from "../atoms/Carousel";
 import TopButton from "../atoms/TopButton";
 import MessageCard from "../atoms/MessageCard";
 import DoubleMessageCard from "../atoms/DoubleMessageCard";
+import LetterCard from "../atoms/LetterCard";
+import CommentCard from "../atoms/CommentCard";
 
 const MainContainer = styled.div`
     display: block;
@@ -38,8 +40,16 @@ function Main({props, text}) {
             <TopButton />
             <MessageCard img={health} text={"건강"} />
             <DoubleMessageCard img1={happy} text1={"행복"} img2={fun} text2={"즐거움"} />
-                <FlowText text1={"WORK LESS"} text2={"AND EARN MORE !"} text3={""}/>
+            <FlowText text1={"WORK LESS"} text2={"AND EARN MORE !"}/>
             <Divider />
+            <LetterCard title={"TO YOU"}
+                        msg={"OO아 생일축하해! \n 어쩌구 저쩌구 \n 쿠쿠루삥뽕" +
+                            " \n 다음에 맛있는거 먹으러 가자" +
+                            "\n\n 그럼 20000 (~'▽')~♥" +
+                            "\n FROM 수경"}/>
+            <Divider />
+            <FlowText text1={"(~'▽')~♥"} text2={"(~'▽')~★"} />
+            <CommentCard />
         </MainContainer>
     );
 }

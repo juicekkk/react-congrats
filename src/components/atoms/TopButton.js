@@ -33,6 +33,8 @@ const TopButton = ({ text }) => {
         bottom: 60px;
         display: none;
         right: 0;
+        z-index: 9999;
+        width: 15%;
     `;
 
     return (

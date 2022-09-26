@@ -1,8 +1,9 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import letter from '../../images/letter.png';
 
-const MessageCard = ({ img1, text1, img2, text2, msg}) => {
+const MessageCard = ({ title, msg}) => {
     const StyledCardWrap = styled.div`
         width: 100%;
         display: flex;
@@ -10,11 +11,16 @@ const MessageCard = ({ img1, text1, img2, text2, msg}) => {
         margin: 20px auto;
         justify-content: space-evenly;
     `;
+    const StyledLetterWrap = styled.div`
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+    `;
 
-    const StyledCardDoubleImgWrap = styled.img`
+    const StyledLetterImgWrap = styled.img`
         display: block;
         margin 0 auto;
-        width: 75%;
+        width: 55%;
     `;
 
     const StyledCardText = styled.span`
@@ -69,14 +75,12 @@ const MessageCard = ({ img1, text1, img2, text2, msg}) => {
     return (
         <div>
             <StyledCardWrap>
+                <StyledLetterWrap>
+                    <StyledLetterImgWrap src={letter} onMouseOver={MouseOver} onMouseOut={MouseOut}/>
+                    <StyledCardText>{title}</StyledCardText>
+                </StyledLetterWrap>
                 <div>
-                    <StyledCardDoubleImgWrap src={img1} onMouseOver={MouseOver} onMouseOut={MouseOut}/>
-                    <StyledCardText>{text1}</StyledCardText>
-                </div>
-                <div>
-                    {img2 ? <StyledCardDoubleImgWrap src={img2} onMouseOver={MouseOver} onMouseOut={MouseOut}/> : ""}
-                    {text2 ? <StyledCardText>{text2}</StyledCardText> : "" }
-                    {msg ? <StyledCardMsg>{msg}</StyledCardMsg> : "" }
+                    <StyledCardMsg>{msg}</StyledCardMsg>
                 </div>
             </StyledCardWrap>
         </div>
