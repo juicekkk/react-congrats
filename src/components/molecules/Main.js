@@ -50,6 +50,7 @@ function Main({props, text}) {
             <Divider />
             <FlowText text1={"(~'▽')~♥"} text2={"(~'▽')~★"} />
             <CommentCard />
+            <Divider />
         </MainContainer>
     );
 }
