@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import DelPop from "../atoms/Popup";
 
 import XButton from '../../images/XButton.png';
 
 const Comment = ({text, button}) => {
+    const [popVisible, setPopVisible] = useState(false);
+
     const StyledCommentsWrap = styled.div`
         display: flex;
         flex-wrap: wrap;
@@ -48,23 +51,28 @@ const Comment = ({text, button}) => {
         bottom: 5px;
     `;
 
+    function openClosePop(e) {
+        setPopVisible(!popVisible);
+    }
+
     return (
         <div>
             <StyledCommentsWrap>
                 <StyledWriter>김아무개</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton}/>
+                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
                 <StyledComment>생일 너무 축하해 ~</StyledComment>
             </StyledCommentsWrap>
             <StyledCommentsWrap>
                 <StyledWriter>수경</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton}/>
+                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
                 <StyledComment>다음에 같이 밥먹자 !!</StyledComment>
             </StyledCommentsWrap>
             <StyledCommentsWrap>
                 <StyledWriter>홍길동</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton}/>
+                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
                 <StyledComment>해피벌스데잉~~~~</StyledComment>
             </StyledCommentsWrap>
+            { popVisible ? <DelPop setPopVisible={setPopVisible} popVisible={popVisible}  /> : null }
         </div>
     );
 }

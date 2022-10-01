@@ -21,14 +21,9 @@ const TopButton = ({ text }) => {
     `;
 
     const StyledButton = styled.img`
-        @media (min-width:1000px){
-            left: 65% !important;
-        }
         @media (min-width:640px){
-            left: 72%;
-            transform: translate(50%, -50%);
+            display: none !important;
         }
-        
         position: fixed;
         bottom: 60px;
         display: none;

@@ -26,6 +26,14 @@ const Music = () => {
     }
 
     const StyledSound = styled.img`
+        @media (min-width:1200px){
+            left: 68% !important;
+        }
+        @media (min-width:640px){
+            left: 82%;
+            top: 3%;
+            transform: translate(-50%, -50%);
+        }
         position: fixed;
         z-index: 9999;
         width: 32px;
