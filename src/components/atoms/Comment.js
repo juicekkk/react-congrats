@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import DelPop from "../atoms/Popup";
 
+import DelPop from "../atoms/Popup";
 import XButton from '../../images/XButton.png';
 
 const Comment = ({text, button}) => {
@@ -19,7 +20,6 @@ const Comment = ({text, button}) => {
         padding: 20px;
         border-radius: 10px;
     `;
-
     const StyledWriter = styled.span`
         align-items: center;
         position: relative;
@@ -27,7 +27,6 @@ const Comment = ({text, button}) => {
         color: #3d3d3d;
         font-weight: bold;
     `;
-
     const StyledComment = styled.span`
         position: relative;
         margin-bottom: 7px;
@@ -35,7 +34,6 @@ const Comment = ({text, button}) => {
         font-weight: bold;
         width: 100%;
     `;
-
     const StyledDel = styled.img`
         position: absolute;
         width: 25px;
@@ -43,7 +41,6 @@ const Comment = ({text, button}) => {
         right: 10px;
         top: 11px;
     `;
-
     const StyledDate = styled.span`
         position: relative;
         color: #989898;
@@ -55,9 +52,27 @@ const Comment = ({text, button}) => {
         setPopVisible(!popVisible);
     }
 
+    // 데이터
+    const [comments, setComments] = useState('');
+    useEffect(() => {
+        axios.get('/comment')
+            .then(res => {
+                console.log(res.data);
+                setComments(res.data);
+            })
+    }, [])
+
     return (
         <div>
-            <StyledCommentsWrap>
+                {comments && comments.map(data => (
+                    <StyledCommentsWrap key={data.cNum}>
+                        <StyledWriter>{data.writer}</StyledWriter>
+                        <StyledDate>{data.regDate}</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
+                        <StyledComment>{data.content}</StyledComment>
+                    </StyledCommentsWrap>
+                ))}
+
+            {/*<StyledCommentsWrap>
                 <StyledWriter>김아무개</StyledWriter>
                 <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
                 <StyledComment>생일 너무 축하해 ~</StyledComment>
@@ -71,7 +86,7 @@ const Comment = ({text, button}) => {
                 <StyledWriter>홍길동</StyledWriter>
                 <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
                 <StyledComment>해피벌스데잉~~~~</StyledComment>
-            </StyledCommentsWrap>
+            </StyledCommentsWrap>*/}
             { popVisible ? <DelPop setPopVisible={setPopVisible} popVisible={popVisible}  /> : null }
         </div>
     );
