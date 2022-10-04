@@ -7,10 +7,12 @@ import buttonImg from '../../images/top_button.png';
 
 const TopButton = ({ text }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
+
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }
     const moveToTop = () => (document.documentElement.scrollTop = 0);
+
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll);
     });
@@ -19,7 +21,6 @@ const TopButton = ({ text }) => {
         width: 100%;
         max-width: 640px;
     `;
-
     const StyledButton = styled.img`
         @media (min-width:640px){
             display: none !important;

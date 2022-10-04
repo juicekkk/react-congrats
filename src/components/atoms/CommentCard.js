@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 import Comments from "../atoms/Comment";
@@ -6,17 +7,19 @@ import SmallText from "./SmallText";
 import Candle from '../../images/candle.png';
 
 const CommentCard = ({text, button}) => {
+    const writerRef = useRef(null)
+    const pwdRef = useRef(null);
+    const contentRef = useRef(null);
+
     const StyledCommentWrap = styled.div`
         display: block;
         width: 100%;
         margin: 0 auto;
     `;
-
     const StyledCandle = styled.img`
         display: block;
         margin: 0 auto;
     `;
-
     const StyledInputCommentWrap = styled.div`
         display: flex;
         flex-wrap: wrap;
@@ -26,7 +29,6 @@ const CommentCard = ({text, button}) => {
         margin: 0 auto;
         text-align: center;
     `;
-
     const WriterPwd = styled.input`
         display: block;
         width: 30%;
@@ -37,7 +39,6 @@ const CommentCard = ({text, button}) => {
         font-weight: bold;
         border-bottom: none;
     `;
-
     const Comment = styled.input`
         display: block;
         width: 65%;
@@ -48,7 +49,6 @@ const CommentCard = ({text, button}) => {
         padding: 16px 10px;
         font-weight: bold;
     `;
-
     const ConfirmBtn = styled.input`
         display: block;
         margin: 0;
@@ -62,18 +62,53 @@ const CommentCard = ({text, button}) => {
         width: 20%;
     `;
 
+    const [comments, setComments] = useState('');
+    function loadComment() {
+        axios.get('/comment')
+            .then(res => {
+                console.log(res.data);
+                setComments(res.data);
+            })
+            .catch(function(error) {
+                //alert("에러가 발생했습니다.");
+            });
+     };
+
+    const addComment = () => {
+        const data = {
+            'writer': writerRef.current.value,
+            'pwd': pwdRef.current.value,
+            'content': contentRef.current.value,
+        };
+
+        axios.post('/comment', data)
+            .then(function(response) {
+                //console.log(response);
+                if(response.status == 200 && response.data.result == 1){
+                    loadComment();
+                }
+            })
+            .catch(function(error) {
+                //alert("에러가 발생했습니다.");
+            })
+    }
+
+    useEffect(() => {
+        loadComment();
+    }, []);
+
     return (
         <StyledCommentWrap>
             <StyledCandle src={Candle}/>
             <SmallText text={'● 축하인사를 남겨주세요 ●'} color={'#666'} />
             <StyledInputCommentWrap>
-                <WriterPwd type="text" placeholder={"닉네임"} />
-                <WriterPwd type="password" placeholder={"비밀번호"} />
-                <Comment type="text" placeholder={"댓글을 입력해주세요."} />
-                <ConfirmBtn type="button" value="등록" />
+                <WriterPwd type="text" placeholder={"닉네임"} ref={writerRef} />
+                <WriterPwd type="password" placeholder={"비밀번호"} ref={pwdRef} />
+                <Comment type="text" placeholder={"댓글을 입력해주세요."} ref={contentRef} />
+                <ConfirmBtn type="button" value="등록" onClick={addComment} />
             </StyledInputCommentWrap>
 
-            <Comments />
+            <Comments comments={comments} />
             <SmallText text={'THANK YOU FOR WATCHING'} color={'#666'} />
         </StyledCommentWrap>
     );

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import DelPop from "../atoms/Popup";
 import XButton from '../../images/XButton.png';
 
-const Comment = ({text, button}) => {
+const Comment = ({ comments }) => {
     const [popVisible, setPopVisible] = useState(false);
 
     const StyledCommentsWrap = styled.div`
@@ -47,46 +46,32 @@ const Comment = ({text, button}) => {
         left: 6px;
         bottom: 5px;
     `;
+    const StyledNoData = styled.div`
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        color: #6b6b6b;
+    `;
 
     function openClosePop(e) {
         setPopVisible(!popVisible);
     }
 
-    // 데이터
-    const [comments, setComments] = useState('');
-    useEffect(() => {
-        axios.get('/comment')
-            .then(res => {
-                console.log(res.data);
-                setComments(res.data);
-            })
-    }, [])
-
     return (
         <div>
-                {comments && comments.map(data => (
-                    <StyledCommentsWrap key={data.cNum}>
-                        <StyledWriter>{data.writer}</StyledWriter>
-                        <StyledDate>{data.regDate}</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
-                        <StyledComment>{data.content}</StyledComment>
-                    </StyledCommentsWrap>
-                ))}
-
-            {/*<StyledCommentsWrap>
-                <StyledWriter>김아무개</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
-                <StyledComment>생일 너무 축하해 ~</StyledComment>
-            </StyledCommentsWrap>
-            <StyledCommentsWrap>
-                <StyledWriter>수경</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
-                <StyledComment>다음에 같이 밥먹자 !!</StyledComment>
-            </StyledCommentsWrap>
-            <StyledCommentsWrap>
-                <StyledWriter>홍길동</StyledWriter>
-                <StyledDate>22.04.01 15:33</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
-                <StyledComment>해피벌스데잉~~~~</StyledComment>
-            </StyledCommentsWrap>*/}
+            {comments.length > 0
+                ? comments.map(data => (
+                <StyledCommentsWrap key={data.cNum}>
+                    <StyledWriter>{data.writer}</StyledWriter>
+                    <StyledDate>{data.regDate}</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
+                    <StyledComment>{data.content}</StyledComment>
+                </StyledCommentsWrap>
+                ))
+                :
+                <StyledCommentsWrap>
+                    <StyledNoData>등록된 댓글이 없습니다<br/>첫번째 댓글을 남겨주세요(~'▽')~♥</StyledNoData>
+                </StyledCommentsWrap>
+            }
             { popVisible ? <DelPop setPopVisible={setPopVisible} popVisible={popVisible}  /> : null }
         </div>
     );
