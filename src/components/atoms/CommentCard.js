@@ -63,6 +63,8 @@ const CommentCard = ({text, button}) => {
     `;
 
     const [comments, setComments] = useState('');
+    const [delData, setDelData] = useState(null);
+
     function loadComment() {
         axios.get('/comment')
             .then(res => {
@@ -93,9 +95,34 @@ const CommentCard = ({text, button}) => {
             })
     }
 
+    const delComment = () => {
+        axios.delete('/comment', {
+                headers: {
+                    Authorization: "***"
+                },
+                data: delData
+            })
+            .then(function(response) {
+                //console.log(response);
+                if(response.status == 200){
+                    if(response.data.result == 0){
+                        alert("비밀번호가 일치하지 않습니다.");
+                    }
+                    setDelData(null);
+                }
+            })
+            .catch(function(error) {
+                //alert("에러가 발생했습니다.");
+            });
+    }
+
     useEffect(() => {
-        loadComment();
-    }, []);
+        if(delData != null){
+            delComment();
+        } else {
+            loadComment();
+        }
+    }, [delData]);
 
     return (
         <StyledCommentWrap>
@@ -108,7 +135,7 @@ const CommentCard = ({text, button}) => {
                 <ConfirmBtn type="button" value="등록" onClick={addComment} />
             </StyledInputCommentWrap>
 
-            <Comments comments={comments} />
+            <Comments comments={comments} setDelData={setDelData} />
             <SmallText text={'THANK YOU FOR WATCHING'} color={'#666'} />
         </StyledCommentWrap>
     );

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import DelPop from "../atoms/Popup";
 import XButton from '../../images/XButton.png';
 
-const Comment = ({ comments }) => {
+const Comment = ({ comments, setDelData }) => {
     const [popVisible, setPopVisible] = useState(false);
+    const [cNum, setCNum] = useState(null);
 
     const StyledCommentsWrap = styled.div`
         display: flex;
@@ -54,6 +55,7 @@ const Comment = ({ comments }) => {
     `;
 
     function openClosePop(e) {
+        setCNum(e.target.getAttribute('value'));
         setPopVisible(!popVisible);
     }
 
@@ -63,7 +65,7 @@ const Comment = ({ comments }) => {
                 ? comments.map(data => (
                 <StyledCommentsWrap key={data.cNum}>
                     <StyledWriter>{data.writer}</StyledWriter>
-                    <StyledDate>{data.regDate}</StyledDate><StyledDel src={XButton} onClick={openClosePop}/>
+                    <StyledDate>{data.regDate}</StyledDate><StyledDel value={data.cNum} src={XButton} onClick={openClosePop}/>
                     <StyledComment>{data.content}</StyledComment>
                 </StyledCommentsWrap>
                 ))
@@ -72,7 +74,7 @@ const Comment = ({ comments }) => {
                     <StyledNoData>등록된 댓글이 없습니다<br/>첫번째 댓글을 남겨주세요(~'▽')~♥</StyledNoData>
                 </StyledCommentsWrap>
             }
-            { popVisible ? <DelPop setPopVisible={setPopVisible} popVisible={popVisible}  /> : null }
+            { popVisible ? <DelPop setDelData={setDelData} cNum={cNum} setPopVisible={setPopVisible} popVisible={popVisible}  /> : null }
         </div>
     );
 }

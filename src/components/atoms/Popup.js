@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import styled from 'styled-components';
 
 
-const Popup = ({ popVisible, setPopVisible }) => {
+const Popup = ({ popVisible, setPopVisible, setDelData, cNum }) => {
     const StyledFlexWrap = styled.div`
         display: flex;
         flex-wrap: wrap;
@@ -11,7 +11,6 @@ const Popup = ({ popVisible, setPopVisible }) => {
         align-items: center;
         position: relative;
     `;
-
     const StyledDim = styled.div`
         width: 100%;
         height: 100vh;
@@ -22,7 +21,6 @@ const Popup = ({ popVisible, setPopVisible }) => {
         z-index: 9999;
         background: #000;
     `;
-
     const StyledPopup = styled.div`
         display: grid;
         align-content: center;
@@ -61,7 +59,6 @@ const Popup = ({ popVisible, setPopVisible }) => {
             font-weight: bold;
         }
     `;
-
     const BearEar = styled.div`
         background: #f5c85e;
         width: 100px;
@@ -76,13 +73,21 @@ const Popup = ({ popVisible, setPopVisible }) => {
             display: none;
         }
     `;
-
     const BearEarInner = styled(BearEar)`
         background: #946552;
         width: 60px;
         height: 60px;
         top: 31%;
     `;
+
+    const pwdRef = useRef(null);
+    function delComment(e) {
+        const data = {
+            'cNum': cNum,
+            'pwd': pwdRef.current.value,
+        };
+        setDelData(data);
+    }
 
     return (
         <StyledFlexWrap>
@@ -93,15 +98,14 @@ const Popup = ({ popVisible, setPopVisible }) => {
             <StyledDim />
             <StyledPopup>
                 <span>비밀번호를<br />입력해주세요</span>
-                <input type="password" name="pwd"/>
+                <input type="password" name="pwd" ref={pwdRef} />
                 <StyledFlexWrap>
-                    <input type="button" value="확인"/>
+                    <input type="button" value="확인" onClick={delComment}/>
                     <input type="button" value="취소" onClick={(event)=> setPopVisible(!popVisible)}/>
                 </StyledFlexWrap>
             </StyledPopup>
         </StyledFlexWrap>
     );
-
 };
 
 export default Popup;
