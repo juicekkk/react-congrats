@@ -6,7 +6,7 @@ import Comments from "../atoms/Comment";
 import SmallText from "./SmallText";
 import Candle from '../../images/candle.png';
 
-const CommentCard = ({text, button}) => {
+const CommentCard = ({main}) => {
     const writerRef = useRef(null)
     const pwdRef = useRef(null);
     const contentRef = useRef(null);
@@ -66,7 +66,7 @@ const CommentCard = ({text, button}) => {
     const [delData, setDelData] = useState(null);
 
     function loadComment() {
-        axios.get('/comment')
+        axios.get('/comment?main='+main, )
             .then(res => {
                 console.log(res.data);
                 setComments(res.data);
@@ -81,7 +81,19 @@ const CommentCard = ({text, button}) => {
             'writer': writerRef.current.value,
             'pwd': pwdRef.current.value,
             'content': contentRef.current.value,
+            'main': main,
         };
+
+        if(data.writer.length < 1) {
+            alert('닉네임을 입력해주세요.');
+            return false;
+        } else if(data.pwd.length < 1) {
+            alert('비밀번호를 입력해주세요.');
+            return false;
+        } else if(data.content.length < 1) {
+            alert('내용을 입력해주세요.');
+            return false;
+        }
 
         axios.post('/comment', data)
             .then(function(response) {

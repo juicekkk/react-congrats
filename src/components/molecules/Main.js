@@ -49,7 +49,7 @@ function Main({props, text}) {
                             "\n FROM 수경"}/>
             <Divider />
             <FlowText text1={"(~'▽')~♥"} text2={"(~'▽')~★"} />
-            <CommentCard />
+            <CommentCard main={"2022주수경"}/>
             <Divider />
         </MainContainer>
     );
